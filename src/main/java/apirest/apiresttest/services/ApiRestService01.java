@@ -1,8 +1,9 @@
-package apirest.apiresttest;
+package apirest.apiresttest.services;
 
+import apirest.apiresttest.model.TarefaToDo;
+import apirest.apiresttest.repository.ApiRestRepository01;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,30 +11,30 @@ import java.util.List;
 @Service
 public class ApiRestService01 {
 
-
     public ApiRestRepository01 repository;
-
     @Autowired
     public ApiRestService01(ApiRestRepository01 repository) {
         this.repository = repository;
     }
 
-
-     public List<ApiModel01> create(ApiModel01 model){
+    // CRUD - Create
+     public List<TarefaToDo> create(TarefaToDo model){
        repository.save(model);
        return list();
     }
-    public List<ApiModel01> list(){
+    public List<TarefaToDo> list(){
+        // Organiza a lista, pela prioridade e pelo nome.
         Sort sort = Sort.by("prioridades").descending().and(
                 Sort.by("nome").ascending());
+
        return repository.findAll();
     }
-    public List<ApiModel01> update(ApiModel01 model){
+    public List<TarefaToDo> update(TarefaToDo model){
         repository.save(model);
         return list();
     }
-    public List<ApiModel01> delete(Long id){
+    public List<TarefaToDo> delete(Long id){
         repository.deleteById(id);
-return list();
+    return list();
     }
 }

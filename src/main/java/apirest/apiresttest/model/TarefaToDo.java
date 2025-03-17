@@ -1,18 +1,27 @@
-package apirest.apiresttest;
+package apirest.apiresttest.model;
 import jakarta.persistence.*;
 
 @Entity // Entity ele trasforma uma classe em uma entidade no BD
-@Table(name = "todos")
-public class ApiModel01 {
+@Table(name = "todos") // Tabela criada no BD
+public class TarefaToDo {
+
+    // Inicia valor ID com valor incrementado automaticante, um tipo de auto_increment.
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+      private Long id;
       private String nome;
       private String descricao;
       private boolean realizado;
       private int prioridade;
 
-      public Long getId() {
+    public TarefaToDo(String nome, String descricao, boolean realizado, int prioridade) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.realizado = realizado;
+        this.prioridade = prioridade;
+    }
+
+    public Long getId() {
           return id;
       }
 
