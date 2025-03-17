@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button ONCLICK="envia-url()">OLA</button>
+<p id="ParagrafoInicial"></p>
+
+</body>
+<script>
+    function envia-url() {
+        fetch('http://localhost:8080/envia-url')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("ParagrafoInicial").innerText = data;
+            })
+            .catch(error => {
+                console.error("Erro ao fazer a requisição:", error);
+            });
+    }
+</script>
+</html>
